@@ -21,6 +21,7 @@
     <properties>
         <java.version>11</java.version>
         <maven.javadoc.skip>true</maven.javadoc.skip>
+
     </properties>
 
 
@@ -35,8 +36,10 @@
                 <artifactId>maven-release-plugin</artifactId>
                 <version>2.5.2</version>
                 <configuration>
+
                     <goals>install</goals>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
+
                 </configuration>
             </plugin>
         </plugins>
