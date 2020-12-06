@@ -14,14 +14,13 @@
     </parent>
     <groupId>com.learn</groupId>
     <artifactId>learnspring-petclinic</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.3</version>
     <name>learnspring-petclinic</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
         <java.version>11</java.version>
         <maven.javadoc.skip>true</maven.javadoc.skip>
-
     </properties>
 
 
@@ -47,7 +46,7 @@
 
     <scm>
         <developerConnection>scm:git:https://github.com/MartynasVq/LearnSpring-PetClinic.git</developerConnection>
-      <tag>HEAD</tag>
+      <tag>learnspring-petclinic-0.0.3</tag>
   </scm>
 
 </project>
