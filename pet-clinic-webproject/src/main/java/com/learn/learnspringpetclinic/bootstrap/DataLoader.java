@@ -1,8 +1,10 @@
 package com.learn.learnspringpetclinic.bootstrap;
 
 import com.learn.learnspringpetclinic.model.Owner;
+import com.learn.learnspringpetclinic.model.PetType;
 import com.learn.learnspringpetclinic.model.Vet;
 import com.learn.learnspringpetclinic.services.OwnerService;
+import com.learn.learnspringpetclinic.services.PetTypeService;
 import com.learn.learnspringpetclinic.services.VetService;
 import com.learn.learnspringpetclinic.services.map.OwnerServiceMap;
 import org.springframework.boot.CommandLineRunner;
@@ -13,15 +15,28 @@ public class DataLoader implements CommandLineRunner {
 
     private final OwnerService ownerService;
     private final VetService vetService;
+    private final PetTypeService petTypeService;
 
-    public DataLoader(OwnerService ownerService, VetService vetService) {
-
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
+        this.petTypeService = petTypeService;
     }
+
+
+
 
     @Override
     public void run(String... args) throws Exception {
+
+        PetType dog = new PetType();
+        dog.setName("Dog");
+        PetType savedPetType = petTypeService.save(dog);
+
+        PetType cat = new PetType();
+        cat.setName("Cat");
+        PetType savedPetType = petTypeService.save(cat);
+
         Owner owner1 = new Owner();
         owner1.setName("Mike");
         owner1.setLastName("Jacob");
@@ -44,8 +59,6 @@ public class DataLoader implements CommandLineRunner {
         vetService.save(vet2);
         System.out.println("Data loaded..");
 
-
-        ownerService.findAll().forEach(System.out::println);
 
     }
 }
