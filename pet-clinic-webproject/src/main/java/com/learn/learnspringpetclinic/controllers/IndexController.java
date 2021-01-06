@@ -6,8 +6,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class IndexController {
 
-    @RequestMapping({"", "/", "index.html", "index"})
+    @RequestMapping({"", "/", "index.html", "index", "vets.html"})
     public String index() {
         return "index";
     }
+
+    @RequestMapping({"/find"})
+    public String findOwners() {
+        return "notimplemented";
+    }
+
 }
+
+
