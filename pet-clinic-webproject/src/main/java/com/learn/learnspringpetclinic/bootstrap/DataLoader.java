@@ -1,11 +1,7 @@
 package com.learn.learnspringpetclinic.bootstrap;
 
 import com.learn.learnspringpetclinic.model.*;
-import com.learn.learnspringpetclinic.services.OwnerService;
-import com.learn.learnspringpetclinic.services.PetTypeService;
-import com.learn.learnspringpetclinic.services.SpecialtiesService;
-import com.learn.learnspringpetclinic.services.VetService;
-import com.learn.learnspringpetclinic.services.map.OwnerServiceMap;
+import com.learn.learnspringpetclinic.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -18,12 +14,14 @@ public class DataLoader implements CommandLineRunner {
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final SpecialtiesService specialtiesService;
+    private final VisitService visitService;
 
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialtiesService specialtiesService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialtiesService specialtiesService, VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialtiesService = specialtiesService;
+        this.visitService = visitService;
     }
 
     @Override
@@ -84,7 +82,7 @@ public class DataLoader implements CommandLineRunner {
         angelosPet.setOwner(owner2);
         angelosPet.setBirthday(LocalDate.now());
         angelosPet.setName("Zulu");
-        owner1.getPets().add(angelosPet);
+        owner2.getPets().add(angelosPet);
         ownerService.save(owner2);
 
         Vet vet1 = new Vet();
@@ -97,6 +95,14 @@ public class DataLoader implements CommandLineRunner {
         vet2.setLastName("Vettorinar");
         vet2.getSpecialties().add(savedSurgery);
         vet2.getSpecialties().add(savedDentistry);
+
+        Visit visitCat = new Visit();
+        visitCat.setPet(angelosPet);
+        visitCat.setDate(LocalDate.now());
+        visitCat.setDescription("Check out the legs");
+        angelosPet.getVisitSet().add(visitCat);
+
+        visitService.save(visitCat);
 
         vetService.save(vet1);
         vetService.save(vet2);
