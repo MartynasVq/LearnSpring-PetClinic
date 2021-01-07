@@ -1,8 +1,12 @@
 package com.learn.learnspringpetclinic.model;
 
+import lombok.*;
+
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
+@Getter
+@Setter
 @MappedSuperclass
 public class Person extends BaseEntity {
 
@@ -12,20 +16,4 @@ public class Person extends BaseEntity {
     private String lastName;
 
 
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
 }
