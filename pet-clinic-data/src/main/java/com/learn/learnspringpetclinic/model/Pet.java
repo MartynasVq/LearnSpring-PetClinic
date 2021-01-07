@@ -2,6 +2,9 @@ package com.learn.learnspringpetclinic.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "pets")
@@ -17,6 +20,16 @@ public class Pet extends BaseEntity {
     private LocalDate birthday;
     @Column(name = "name")
     private String name;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet")
+    private Set<Visit> visitSet = new HashSet<>();
+
+    public Set<Visit> getVisitSet() {
+        return visitSet;
+    }
+
+    public void setVisitSet(Set<Visit> visitSet) {
+        this.visitSet = visitSet;
+    }
 
     public String getName() {
         return name;
